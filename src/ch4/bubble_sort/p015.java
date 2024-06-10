@@ -1,4 +1,4 @@
-package ch3.sort.bubble_sort;
+package ch4.bubble_sort;
 
 import java.util.Scanner;
 

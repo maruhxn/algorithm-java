@@ -1,4 +1,4 @@
-package ch3.sort.merge_sort;
+package ch4.merge_sort;
 
 import java.io.*;
 

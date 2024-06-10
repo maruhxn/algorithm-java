@@ -1,4 +1,4 @@
-package ch3.sort.insert_sort;
+package ch4.insert_sort;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package ch3.sort.selection_sort;
+package ch4.selection_sort;
 
 import java.io.BufferedReader;
 import java.io.IOException;

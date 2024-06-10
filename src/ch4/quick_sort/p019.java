@@ -1,4 +1,4 @@
-package ch3.sort.quick_sort;
+package ch4.quick_sort;
 
 import java.io.BufferedReader;
 import java.io.IOException;
