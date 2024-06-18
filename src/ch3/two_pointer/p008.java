@@ -1,4 +1,4 @@
-package ch3.tow_pointer;
+package ch3.two_pointer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
