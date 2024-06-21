@@ -47,7 +47,6 @@ public class p019 {
 
         quickSort(arr, st, right);
         quickSort(arr, left, ed);
-
     }
 
     private static void swap(long[] arr, int i, int j) {
@@ -56,30 +55,6 @@ public class p019 {
         arr[j] = temp;
     }
 }
-
-/**
- * 퀵 정렬 과정
- * 1. pivot 설정
- * 2. pivot을 기준으로 다음의 과정을 거쳐서 데이터를 2개의 집합으로 분할
- * 2-1. start < pivot -> start++
- * 2-2. end > pivot -> end--
- * 2-3. start > pivot && end < pivot -> swap(start, end), start++, end--
- * 2-4. start와 end가 만날 때까지 2-1 ~ 2-3 반복
- * 2-5. start와 end가 만나면 만난 지점의 데이터와 pivot의 데이터를 비교해서 pivot이 더 크면 만난 지점의 오른쪽, 작으면 만난 지점의 왼쪽에 pivot 데이터 삽입
- * 3. 분리 집합에서 다시 pivot 선정
- * 4. 분리 집합이 1개 이하가 될 때까지 1 ~ 3 반복
- * <p>
- * 퀵 정렬 과정
- * 1. pivot 설정
- * 2. pivot을 기준으로 다음의 과정을 거쳐서 데이터를 2개의 집합으로 분할
- * 2-1. start < pivot -> start++
- * 2-2. end > pivot -> end--
- * 2-3. start > pivot && end < pivot -> swap(start, end), start++, end--
- * 2-4. start와 end가 만날 때까지 2-1 ~ 2-3 반복
- * 2-5. start와 end가 만나면 만난 지점의 데이터와 pivot의 데이터를 비교해서 pivot이 더 크면 만난 지점의 오른쪽, 작으면 만난 지점의 왼쪽에 pivot 데이터 삽입
- * 3. 분리 집합에서 다시 pivot 선정
- * 4. 분리 집합이 1개 이하가 될 때까지 1 ~ 3 반복
- */
 
 /**
  * 퀵 정렬 과정
