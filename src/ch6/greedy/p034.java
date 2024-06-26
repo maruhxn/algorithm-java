@@ -1,4 +1,4 @@
-package ch5.greedy;
+package ch6.greedy;
 
 // 수를 묶어서 최댓값 만들기(G4)
 

@@ -1,4 +1,4 @@
-package ch5.greedy;
+package ch6.greedy;
 
 // 최솟값을 만드는 괄호 배치 찾기(S2)
 
