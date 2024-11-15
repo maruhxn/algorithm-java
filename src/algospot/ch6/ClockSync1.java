@@ -32,7 +32,8 @@ public class ClockSync1 {
                 clocks[i] = (12 - Integer.parseInt(st.nextToken())) / 3;
             }
 
-            System.out.println(solve(clocks, 0));
+            int result = solve(clocks, 0);
+            System.out.println(result == MAX_VALUE ? -1 : result);
         }
     }
 
@@ -50,7 +51,7 @@ public class ClockSync1 {
             int[] selectedSwitch = switches[swtch];
             for (int i = 0; i < selectedSwitch.length; i++) {
                 clocks[selectedSwitch[i]]--;
-                if(clocks[selectedSwitch[i]] == -1) clocks[selectedSwitch[i]] = 3;
+                if (clocks[selectedSwitch[i]] == -1) clocks[selectedSwitch[i]] = 3;
             }
         }
 
