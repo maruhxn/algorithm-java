@@ -73,12 +73,8 @@ public class INSERTION_TREAP {
 
         void calcSize() {
             size = 1;
-            if (left != null) {
-                size += left.size;
-            }
-            if (right != null) {
-                size += right.size;
-            }
+            if (left != null) size += left.size;
+            if (right != null) size += right.size;
         }
     }
 
@@ -123,6 +119,7 @@ public class INSERTION_TREAP {
     // root를 루트로 하는 트립에서 key를 지우고 결과 트립의 루트를 반환한다.
     public static Node erase(Node root, int key) {
         if (root == null) return root;
+
         // root를 지우고 양 서브트리를 합친 뒤 반환한다.
         if (root.key == key) {
             Node ret = merge(root.left, root.right);
@@ -166,4 +163,16 @@ public class INSERTION_TREAP {
 
         return kth(root.right, k - leftSize - 1);
     }
+
+// root를 루트로 하는 트리에서 key보다 작은 키 값의 수를 반환한다.
+public static int countLessThan(Node root, int key) {
+    if (root == null) return 0;
+
+    if (root.key >= key) return countLessThan(root.left, key);
+
+    int ls = root.left != null ? root.left.size : 0;
+
+    return ls + 1 + countLessThan(root.right, key);
+}
+
 }
