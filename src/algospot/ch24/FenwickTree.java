@@ -17,8 +17,6 @@ public class FenwickTree {
      * @return
      */
     public int prefixSum(int pos) {
-        // 인덱스가 1부터 시작한다고 가정
-        ++pos;
         int ret = 0;
         while (pos > 0) {
             ret += tree[pos];
@@ -36,7 +34,6 @@ public class FenwickTree {
      * @param val
      */
     public void update(int pos, int val) {
-        ++pos;
         while (pos < tree.length) {
             tree[pos] += val;
             pos += (pos & -pos);
