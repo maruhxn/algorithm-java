@@ -11,7 +11,7 @@ public class EulerCircuit {
     // 오일러 서킷을 구하는 DFS
     public static void findEulerCircuit(int node) {
         for (int i = 0; i < graph.length; i++) {
-            while (graph[node][i] > 0) { // 간선이 존재하면
+            while (graph[node][i] > 0) { // 간선이 남아있다면..
                 graph[node][i]--; // 간선을 사용
                 graph[i][node]--; // 무향 그래프이므로 대칭적으로 간선 제거
                 findEulerCircuit(i); // 다음 정점으로 이동
