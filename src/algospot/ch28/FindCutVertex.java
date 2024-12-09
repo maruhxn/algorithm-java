@@ -72,7 +72,7 @@ public class FindCutVertex {
                 if (!isRoot && subtree >= discovered[node]) isCutVertex[node] = true;
 
                 ret = Math.min(ret, subtree);
-            } else { // 방문한 적이 있다면 (역방향 간선)
+            } else { // 방문한 적이 있다면 (부모로의 역방향 간선)
                 ret = Math.min(ret, discovered[next]);
             }
         }

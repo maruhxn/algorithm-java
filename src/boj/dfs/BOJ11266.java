@@ -74,7 +74,6 @@ public class BOJ11266 {
 
                 if (!isRoot && subtree >= discovered[curr]) isCutVertex[curr] = true;
 
-
                 ret = Math.min(ret, subtree);
             } else {
                 ret = Math.min(ret, discovered[next]);
