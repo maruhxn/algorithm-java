@@ -24,15 +24,16 @@ public class Puzzle15Bidirectional {
     // start에서 finish까지 가는 최단 경로의 길이 반환
     public static int bidirectional(State start, State finish) {
         // 예외: start == finish인 경우
-        if (start == finish) return 0;
+        if (start.equals(finish)) return 0;
 
         // 각 정점까지의 최단 경로의 길이를 저장
         Map<State, Integer> map = new HashMap<>();
         Queue<State> queue = new LinkedList<>();
+
+        // 시작점과 도착점을 모두 큐에 넣되, 부호를 반대로 저장한다.
         queue.add(start);
         queue.add(finish);
 
-        // 시작점과 도착점을 모두 큐에 넣되, 부호를 반대로 저장한다.
         map.put(start, 1);
         map.put(finish, -1);
 
@@ -41,11 +42,16 @@ public class Puzzle15Bidirectional {
             // 인접한 정점들의 번호를 얻어낸다
             List<State> adjacent = curr.getAdjacent();
             for (int i = 0; i < adjacent.size(); i++) {
-                if (!map.containsKey(adjacent.get(i))) {
-                    map.put(adjacent.get(i), incr(map.get(curr)));
-                    queue.add(adjacent.get(i));
-                } else if (sgn(map.get(adjacent.get(i))) != sgn(map.get(curr))) { // 가운데서 만난 경우
-                    return Math.abs(map.get(adjacent.get(i))) + Math.abs(map.get(curr)) - 1;
+                State nextState = adjacent.get(i);
+
+                // 아직 방문하지 않은 정점을 방문하고 최단 경로 길이 갱신
+                if (!map.containsKey(nextState)) {
+                    map.put(nextState, incr(map.get(curr)));
+                    queue.add(nextState);
+                }
+                // 이미 방문했으며, 가운데서 만난 경우(부호만 서로 다른 경우)
+                else if (sgn(map.get(nextState)) != sgn(map.get(curr))) {
+                    return Math.abs(map.get(nextState)) + Math.abs(map.get(curr)) - 1;
                 }
             }
         }

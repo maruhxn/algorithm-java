@@ -1,31 +1,29 @@
 package algospot.ch29;
 
-import javax.naming.InterruptedNamingException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.StringTokenizer;
 
 public class BFS {
 
     static ArrayList<Integer>[] graph;
-    static boolean[] visited;
+    static boolean[] discovored;
     static Queue<Integer> queue;
 
     public static void bfs(int start) {
-        visited[start] = true;
+        discovored[start] = true;
         queue.add(start);
         while (!queue.isEmpty()) {
             int curr = queue.poll();
             System.out.printf(curr + " ");
             for (int i = 0; i < graph[curr].size(); i++) {
                 int next = graph[curr].get(i);
-                if(!visited[next]) {
+                if (!discovored[next]) {
                     queue.add(next);
-                    visited[next] = true;
+                    discovored[next] = true;
                 }
             }
         }
@@ -34,7 +32,7 @@ public class BFS {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         graph = new ArrayList[7];
-        visited = new boolean[7];
+        discovored = new boolean[7];
         queue = new LinkedList<>();
 
         for (int i = 0; i < graph.length; i++) {

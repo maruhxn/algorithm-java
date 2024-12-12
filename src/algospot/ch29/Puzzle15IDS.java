@@ -15,14 +15,16 @@ public class Puzzle15IDS {
         // 지금까지 구한 최적해보다 더 좋을 가능성이 없으면 버린다
         if (steps >= best) return;
         // 목표 상태에 도달한 경우
-        if (curr == finish) {
+        if (curr.equals(finish)) {
             best = steps;
             return;
         }
+
         // 인접 상태들을 깊이 우선 탐색
         List<State> adjacent = curr.getAdjacent();
         for (int i = 0; i < adjacent.size(); i++) {
-            dfs(adjacent.get(i), finish, steps + 1);
+            State nextState = adjacent.get(i);
+            dfs(nextState, finish, steps + 1);
         }
     }
 
@@ -31,7 +33,7 @@ public class Puzzle15IDS {
         for (int limit = 4; ; limit += growthStep) {
             best = limit + 1;
             dfs(start, finish, 0);
-            if (best <= limit) return best;
+            if (best <= limit) return best; // 깊이 제한보다 짧은 경로가 존재한다면 즉시 반환
         }
     }
 }

@@ -29,7 +29,7 @@ public class Dijkstra {
         dist[src] = 0;
 
         while (true) {
-            int closest = Integer.MAX_VALUE;
+            int closest = INF;
             int here = -1;
 
             // 아직 방문하지 않은 정점 중 가장 가까운 정점을 찾는다

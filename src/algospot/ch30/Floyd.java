@@ -32,6 +32,7 @@ public class Floyd {
 
         for (int k = 0; k < V; k++) { // 경유점
             for (int i = 0; i < V; i++) { // 시점
+                if (graph[i][k] == INF) continue;
                 for (int j = 0; j < V; j++) { // 종점
                     graph[i][j] = Math.min(graph[i][j], graph[i][k] + graph[k][j]);
                 }
