@@ -12,13 +12,12 @@ public class BOJ13241 {
         StringBuilder sb = new StringBuilder();
         long a = Integer.parseInt(st.nextToken());
         long b = Integer.parseInt(st.nextToken());
-
         sb.append(a * b / gcd(a, b));
         System.out.println(sb);
     }
 
     public static long gcd(long a, long b) {
-        if(b ==0) return a;
+        if (b == 0) return a;
         return gcd(b, a % b);
     }
 }
