@@ -23,7 +23,28 @@ public class BOJ11053 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        System.out.println(lis(-1) - 1);
+//        System.out.println(lis(-1) - 1);
+
+//        int ret = 0;
+//        for (int i = 0; i < N; i++) {
+//            ret = Math.max(ret, lis2(i));
+//        }
+//
+//        System.out.println(ret);
+        System.out.println(lis2(N) - 1);
+    }
+
+    static int lis2(int end) {
+        int ret = cache[end];
+        if (ret != -1) return ret;
+
+        ret = 1;
+        for (int i = end - 1; i >= 0; --i) {
+            if (end == N || arr[i] < arr[end])
+                ret = Math.max(ret, 1 + lis2(i));
+        }
+
+        return cache[end] = ret;
     }
 
     static int lis(int start) {
