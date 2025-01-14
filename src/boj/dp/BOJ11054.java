@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class BOJ11054 {
     static int N;
     static int[] arr;
-    static int[][] cache;
+    static int[] cache;
     static int[] reverseCache;
 
     public static void main(String[] args) throws Exception {
@@ -16,11 +16,10 @@ public class BOJ11054 {
         N = Integer.parseInt(br.readLine());
 
         arr = new int[N];
-        cache = new int[N + 1][N + 1];
+        cache = new int[N + 1];
         reverseCache = new int[N + 1];
-        for (int i = 0; i <= N; i++) {
-            Arrays.fill(cache[i], -1);
-        }
+
+        Arrays.fill(cache, -1);
         Arrays.fill(reverseCache, -1);
 
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -30,35 +29,35 @@ public class BOJ11054 {
 
         int ret = 0;
         for (int mid = 0; mid < N; mid++) {
-            ret = Math.max(ret, (lis(-1, mid) - 1) + reverseLis(mid));
+            ret = Math.max(ret, lis(mid) + lds(mid) - 1);
         }
 
         System.out.println(ret);
     }
 
-    static int lis(int st, int mid) {
-        int ret = cache[st + 1][mid];
+    static int lis(int end) {
+        int ret = cache[end];
         if (ret != -1) return ret;
 
         ret = 1;
-        for (int next = st + 1; next < mid; ++next) {
-            if ((st == -1 || arr[st] < arr[next]) && arr[next] < arr[mid])
-                ret = Math.max(ret, 1 + lis(next, mid));
+        for (int i = end - 1; i >= 0; --i) {
+            if (arr[i] < arr[end])
+                ret = Math.max(ret, 1 + lis(i));
         }
 
-        return cache[st + 1][mid] = ret;
+        return cache[end] = ret;
     }
 
-    static int reverseLis(int st) {
-        int ret = reverseCache[st];
+    static int lds(int end) {
+        int ret = reverseCache[end];
         if (ret != -1) return ret;
 
         ret = 1;
-        for (int next = st + 1; next < N; ++next) {
-            if (arr[st] > arr[next])
-                ret = Math.max(ret, 1 + reverseLis(next));
+        for (int i = end + 1; i < N; ++i) {
+            if (arr[i] < arr[end])
+                ret = Math.max(ret, 1 + lis(i));
         }
 
-        return reverseCache[st] = ret;
+        return reverseCache[end] = ret;
     }
 }
