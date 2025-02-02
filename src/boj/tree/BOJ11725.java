@@ -6,9 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-/**
- * 트리의 부모 찾기 by 인접 리스트
- */
 public class BOJ11725 {
 
     static ArrayList<Integer>[] tree;
@@ -16,6 +13,7 @@ public class BOJ11725 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
 
         tree = new ArrayList[N + 1];
@@ -36,8 +34,10 @@ public class BOJ11725 {
         checkParentOf(1);
 
         for (int i = 2; i <= N; i++) {
-            System.out.println(parent[i]);
+            sb.append(parent[i]).append("\n");
         }
+
+        System.out.println(sb);
     }
 
     private static void checkParentOf(int p) {
