@@ -32,8 +32,7 @@ public class BOJ2579_2 {
         if (curr <= 1) return stairs[curr];
         if (curr == 2) return stairs[1] + stairs[2];
 
-        int ret = cache[curr];
-        if (ret != -1) return ret;
+        if (cache[curr] != -1) return cache[curr];
 
         int case1 = game(curr - 2);
         int case2 = stairs[curr - 1] + game(curr - 3);

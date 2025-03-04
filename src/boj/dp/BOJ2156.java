@@ -25,15 +25,15 @@ public class BOJ2156 {
     }
 
     static int drink(int curr) {
+        // 기저 사례
         if (curr <= 1) return podoju[curr];
         if (curr == 2) return podoju[1] + podoju[2];
 
-        int ret = cache[curr];
-        if (ret != -1) return ret;
+        if (cache[curr] != -1) return cache[curr];
 
-        ret = podoju[curr] + Math.max(drink(curr - 2), drink(curr - 3) + podoju[curr - 1]);
-        ret = Math.max(ret, drink(curr - 1));
+        int drinkCurr = podoju[curr] + Math.max(drink(curr - 2), drink(curr - 3) + podoju[curr - 1]);
+        int noDrinkCurr = drink(curr - 1);
 
-        return cache[curr] = ret;
+        return cache[curr] = Math.max(drinkCurr, noDrinkCurr);
     }
 }

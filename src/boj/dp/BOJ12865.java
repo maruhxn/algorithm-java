@@ -18,38 +18,32 @@ public class BOJ12865 {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        items = new Item[N + 1];
-        cache = new int[N + 1][100001];
-        for (int i = 0; i <= N; i++) {
+        items = new Item[N];
+        cache = new int[N][K + 1];
+        for (int i = 0; i < N; i++) {
             Arrays.fill(cache[i], -1);
         }
 
-        items[0] = new Item(0, 0);
-        for (int i = 1; i <= N; i++) {
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             int weight = Integer.parseInt(st.nextToken());
             int value = Integer.parseInt(st.nextToken());
             items[i] = new Item(weight, value);
         }
 
-        System.out.println(packing(0, 0));
+        System.out.println(knapsack(N - 1, K));
     }
 
-    // currWeight까지 담았을 때, i번째 물건을 담아서 얻을 수 있는 최대 가치
-    static int packing(int curr, int currWeight) {
-        if (curr == N) return 0;
-        int ret = cache[curr][currWeight];
-        if (ret != -1) return ret;
+    // 수용 가능한 무게가 k일 때, curr까지 탐색할 경우 얻을 수 있는 최대 가치
+    static int knapsack(int curr, int k) {
+        if (curr < 0) return 0;
+        if (cache[curr][k] != -1) return cache[curr][k];
 
-        ret = 0;
-        for (int i = curr + 1; i <= N; i++) {
-            int nextWeight = currWeight + items[i].weight;
-            if (nextWeight <= K) {
-                ret = Math.max(ret, items[i].value + packing(i, nextWeight));
-            }
-        }
+        int ret = knapsack(curr - 1, k); // 현재 물건을 담을 수 없는 경우(이전 값 탐색)
+        if (items[curr].weight <= k) // 현재 물건을 담을 수 있는 경우
+            ret = Math.max(ret, knapsack(curr - 1, k - items[curr].weight) + items[curr].value);
 
-        return cache[curr][currWeight] = ret;
+        return cache[curr][k] = ret;
     }
 
     static class Item {

@@ -24,10 +24,9 @@ public class BOJ9251 {
 
     static int lcs(int index1, int index2) {
         if (index1 == A.length() || index2 == B.length()) return 0;
-        if (A.charAt(index1) == B.charAt(index2)) return cache[index1][index2] = 1 + lcs(index1 + 1, index2 + 1);
-
         if (cache[index1][index2] != -1) return cache[index1][index2];
 
+        if (A.charAt(index1) == B.charAt(index2)) return cache[index1][index2] = 1 + lcs(index1 + 1, index2 + 1);
         return cache[index1][index2] = Math.max(lcs(index1, index2 + 1), lcs(index1 + 1, index2));
     }
 }
