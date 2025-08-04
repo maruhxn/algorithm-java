@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ16139 {
+public class    BOJ16139 {
 
     static int[][] alphaSum;
 

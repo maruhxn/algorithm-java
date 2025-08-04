@@ -23,20 +23,14 @@ public class BOJ2579_2 {
             stairs[i] = Integer.parseInt(br.readLine());
         }
 
-        int ret = game(N);
-
-        System.out.println(ret);
+        System.out.println(solve(N));
     }
 
-    static int game(int curr) {
-        if (curr <= 1) return stairs[curr];
-        if (curr == 2) return stairs[1] + stairs[2];
+    private static int solve(int N) {
+        if (N <= 1) return stairs[N];
+        if (N == 2) return stairs[1] + stairs[2];
+        if (cache[N] != -1) return cache[N];
 
-        if (cache[curr] != -1) return cache[curr];
-
-        int case1 = game(curr - 2);
-        int case2 = stairs[curr - 1] + game(curr - 3);
-
-        return cache[curr] = stairs[curr] + Math.max(case1, case2);
+        return cache[N] = stairs[N] + Math.max(solve(N - 2), stairs[N - 1] + solve(N - 3));
     }
 }
